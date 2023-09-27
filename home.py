@@ -19,19 +19,19 @@ class MyWindow(QMainWindow):
             ("Item", "img/Item.png"),
             ("POS - F2", "img/POS.png"),
             ("Sales Report", "img/Reports.png"),
-            ("POS Report", "img/Reports.png"),
-            ("Discounting", "icon5.png"),
-            ("Cash In/Out", "icon6.png"),
+            ("POS Report", "img/Reports.png"),  # Corrected path
+            ("Discounting", "img/Discounting.png"),  # Corrected path
+            ("Cash In/Out", "img/Disbursement.png"),  # Corrected path
             ("Remittance Report", "img/Reports.png"),
-            ("Settings", "icon8.png"),
-            ("Customer", "icon9.png"),
-            ("Stock In", "icon10.png"),
+            ("Settings", "img/Settings.png"),  # Corrected path
+            ("Customer", "img/Customer.png"),  # Corrected path
+            ("Stock In", "img/Stock In.png"),  # Corrected path
             ("Inventory Report", "img/Reports.png"),
-            ("Utilities", "icon12.png"),
-            ("User", "icon13.png"),
-            ("Stock Out", "icon14.png"),
-            ("Stock Count", "icon15.png"),
-            ("System Tables", "icon16.png"),
+            ("Utilities", "img/Utilities.png"),  # Corrected path
+            ("User", "img/User.png"),  # Corrected path
+            ("Stock Out", "img/Stock Out.png"),  # Corrected path
+            ("Stock Count", "img/Stock Count.png"),  # Corrected path
+            ("System Tables", "img/System Tables.png"),  # Corrected path
         ]
 
         for row in range(4):
@@ -39,33 +39,34 @@ class MyWindow(QMainWindow):
                 index = row * 4 + col
                 if index < len(button_info):
                     button_text, icon_path = button_info[index]
+                    container = QWidget()
+                    layout = QVBoxLayout(container)
                     button = QPushButton()
-                    layout = QVBoxLayout()
-                    button.setLayout(layout)
                     size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                     button.setSizePolicy(size_policy)
-                    
-                    # Load the icon and resize it to double its default size
-                    pixmap = QPixmap(icon_path)
-                    pixmap = pixmap.scaledToHeight(128)  # Set the height as needed
-                    icon = QIcon(pixmap)
-                    button.setIcon(icon)
-                    button.setIconSize(pixmap.size())
-                    
+
+                    pixmap = QPixmap()
+                    if not pixmap.load(icon_path):
+                        print("Error loading image:", pixmap.isNull())
+                    else:
+                        pixmap = pixmap.scaledToHeight(128)
+                        icon = QIcon(pixmap)
+                        button.setIcon(icon)
+                        button.setIconSize(pixmap.size())
+
                     # Create a label for the button title (text)
                     title_label = QLabel(button_text)
                     title_label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)  # Align text to bottom center
-                    
+
                     # Make the text bold
                     font = QFont()
                     font.setBold(True)
                     title_label.setFont(font)
-                    
+
                     layout.addWidget(button)
                     layout.addWidget(title_label)
-                    
-                    grid_layout.addWidget(button, row, col)
 
+                    grid_layout.addWidget(container, row, col)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
