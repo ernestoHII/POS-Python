@@ -19,18 +19,12 @@ driver = webdriver.Chrome(options=chrome_options)  # Create a Chrome WebDriver i
 # Navigate to a web page (in this case, "https://www.example.com/")
 driver.get("https://easyfis-ui-next.hiro-test.net/security")  # Open the specified URL in the Chrome browser
 
-# Find and click a link with the text "More information..."
-# link = driver.find_element(By.LINK_TEXT, "More information...")  # Locate the link by its text
-# link.click()  # Click the located link
-
-# Wait for X seconds (you can use WebDriverWait for more precise waiting)
-# time.sleep(10)  # Pause the script execution for 3 seconds
 
 username = driver.find_element(By.ID, "mat-input-0")  # Replace "your_input_field_id" with the actual ID
 username.send_keys("Admin")
 
-username = driver.find_element(By.ID, "mat-input-1")  # Replace "your_input_field_id" with the actual ID
-username.send_keys("humanincubator_admin@1")
+password = driver.find_element(By.ID, "mat-input-1")  # Replace "your_input_field_id" with the actual ID
+password.send_keys("humanincubator_admin@1")
 # <div class="mat-form-field-infix ng-tns-c128-1"><input _ngcontent-gbo-c138="" matinput="" type="password" class="mat-input-element mat-form-field-autofill-control ng-tns-c128-1 ng-pristine ng-valid cdk-text-field-autofill-monitored ng-touched" id="mat-input-1" aria-invalid="false" aria-required="false"><span class="mat-form-field-label-wrapper ng-tns-c128-1"><label class="mat-form-field-label ng-tns-c128-1 mat-empty mat-form-field-empty ng-star-inserted" id="mat-form-field-label-3" for="mat-input-1" aria-owns="mat-input-1"><!----><mat-label _ngcontent-gbo-c138="" class="ng-tns-c128-1 ng-star-inserted">Password</mat-label><!----><!----></label><!----></span></div>
 # <button _ngcontent-gbo-c138="" mat-flat-button="" color="primary" type="submit" class="mat-focus-indicator btn-login mat-flat-button mat-button-base mat-primary" style="width: 100%; font-size: 18px; padding: 10px;"><span class="mat-button-wrapper"> Login </span><div matripple="" class="mat-ripple mat-button-ripple"></div><div class="mat-button-focus-overlay"></div></button>
 
