@@ -26,11 +26,6 @@ class MyWindow(QMainWindow):
             button.setFixedSize(100, 50)  # Set a fixed size (width=100, height=50)
             grid_layout.addWidget(button, 0, i + 1)
 
-        # Add a single input box that spans from "Sales Detail" to the last button
-        # input_box = QLineEdit(self)
-        # input_box.setFixedSize(1200, 80)  # Set a fixed size for the input box
-        # grid_layout.addWidget(input_box, 2, 0, 1, 11)  # 2(row position), 0(column position), 1(row span), 11(column span)
-
         # Create a QLineEdit with coordinates (20, 80) and size (300, 30)
         input_box = QLineEdit(central_widget)
         input_box.setGeometry(10, 70, 1345, 80)

@@ -7,7 +7,7 @@ class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("PyQt5 4x4 Grid of Buttons")
-        self.setGeometry(100, 100, 1366, 768)  # Set the window size to 1366x768 pixels
+        self.setGeometry(100, 100, 1366, 768)  # Set the window DEFAULT size to 1366x768 pixels
 
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)

@@ -1,6 +1,10 @@
-import sys
+import sys, os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QTableWidget, QTableWidgetItem, QLabel
 import pyodbc
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -34,14 +38,14 @@ class MyWindow(QMainWindow):
 
     def fetch_data_and_populate_table(self):
         try:
-            # Define the MS SQL Server connection string
-            server = 'DESKTOP-JDQGAO5'
-            database = 'easypos'  # Change to your database name
-            username = 'sa'
-            password = 'easyfis'
-            connection_string = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+            # Get database credentials from environment variables
+            db_server = os.getenv("DB_SERVER")
+            db_database = os.getenv("DB_DATABASE")
+            db_username = os.getenv("DB_USERNAME")
+            db_password = os.getenv("DB_PASSWORD")
 
-            # Establish a connection
+            # Establish a connection to the database            
+            connection_string = f'DRIVER={{SQL Server}};SERVER={db_server};DATABASE={db_database};UID={db_username};PWD={db_password}'
             conn = pyodbc.connect(connection_string)
 
             # Create a cursor
@@ -54,7 +58,6 @@ class MyWindow(QMainWindow):
             LEFT JOIN MstUnit AS MU ON MI.UnitId = MU.Id
             LEFT JOIN MstSupplier AS MS ON MI.DefaultSupplierId = MS.Id
             ORDER BY MI.ItemDescription ASC  -- Order by ItemDescription in ascending order (alphabetical)
-            
             '''
 
             cursor.execute(query)
